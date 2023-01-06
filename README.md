@@ -1,46 +1,21 @@
-# encrypted-journal
+# Encrypted Journal
 
-This template should help get you started developing with Vue 3 in Vite.
+A user-encrypted, customizable, journal website (only the user can access the plaintext) with OAuth authentication and encrypted cloud backup for access from multiple devices.
 
-## Recommended IDE Setup
+- [User-Encrypted](#user-encrypted)
+- [Customizable](#customizable)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## User-Encrypted
 
-## Type Support for `.vue` Imports in TS
+Only the user can access their plaintext entires. This is done with in-browser AES encryption based on a password chosen by the user. This password is not recorded anywhere or stored on any cloud platform.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+So accounting for possible security threats such as keylogging, brute-forcing, AES vulnerabilities, etc. these entries can only be viewed by the creator. This is to prevent database admins or cloud hosting services from viewing these potentially personal and private documents.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Customizable
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Journals can be for many different topics which would require different fields. For example, a daily check-in journal might just require a date and a body of text, whereas a workout journal might need a date, effort rating, description, etc.
+Each user will be able to create multiple journals with different topics to cover a whole variety of needs.
 
-## Customize configuration
+## OAuth
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+To allow access from multiple devices, OAuth is used to let the user reach their encrypted journal entries stored in the cloud. The user still has to enter their secure password to decrypt the entries in-browser and read the material.
