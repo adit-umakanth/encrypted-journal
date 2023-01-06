@@ -4,6 +4,7 @@ A user-encrypted, customizable, journal website (only the user can access the pl
 
 - [User-Encrypted](#user-encrypted)
 - [Customizable](#customizable)
+- [OAuth](#oauth)
 
 ## User-Encrypted
 
