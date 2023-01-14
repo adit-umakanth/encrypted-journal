@@ -13,19 +13,18 @@ const router = createRouter({
     },
     {
       path: "/login",
-      "name": "login",
-      component: LoginView
-    }
+      name: "login",
+      component: LoginView,
+    },
   ],
 });
 
-router.beforeEach(async (to, from) => {
-  console.log("Starting check for user!");
+router.beforeEach(async (to) => {
   const currentUser = await getUser();
-  console.log("Received user")
   if (currentUser == null && to.name !== "login") {
-    console.log("Redirecting to login!")
     return { name: "login" };
+  } else if (currentUser !== null && to.name === "login") {
+    return { name: "home" };
   }
 });
 
