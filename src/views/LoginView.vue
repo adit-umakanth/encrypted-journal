@@ -4,8 +4,11 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
 } from "@firebase/auth";
+import { ref } from "vue";
 
+const redirectLoading = ref(false);
 function redirectForOAuth() {
+  redirectLoading.value = true;
   signInWithRedirect(getAuth(), new GoogleAuthProvider());
 }
 </script>
@@ -25,7 +28,11 @@ function redirectForOAuth() {
       </q-card-section>
       <q-separator />
       <q-card-section>
-        <q-btn color="blue" @click="redirectForOAuth">
+        <q-btn
+          color="blue"
+          :loading="redirectLoading"
+          @click="redirectForOAuth"
+        >
           <q-avatar icon="img:google.svg"></q-avatar>
           Sign in with Google</q-btn
         >
