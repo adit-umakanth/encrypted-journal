@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
+$q.dark.set("auto");
+</script>
 
 <template>
   <router-view v-slot="{ Component }">
