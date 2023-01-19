@@ -49,7 +49,6 @@ function signOut() {
     </q-drawer>
 
     <q-page-container>
-      app.vue <br />
       <router-view />
     </q-page-container>
   </q-layout>

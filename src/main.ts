@@ -13,9 +13,6 @@ import "quasar/src/css/index.sass";
 import App from "./App.vue";
 import router from "./router";
 
-console.log("test log");
-console.log(import.meta.env.VITE_FB_AUTH_DOMAIN);
-
 console.log(initializeApp(firebaseConfig));
 
 const app = createApp(App);
