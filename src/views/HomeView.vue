@@ -18,7 +18,9 @@ function signOut() {
 <template>
   <q-layout view="lHh lpR lFf">
     <q-header reveal class="bg-primary text-white">
-      <q-toolbar>
+      <q-toolbar
+        style="background-image: https://upload.wikimedia.org/wikipedia/commons/0/05/PikiWiki_Israel_84881_the_green_village.jpg;"
+      >
         <q-btn
           dense
           flat
@@ -30,7 +32,6 @@ function signOut() {
         <q-toolbar-title></q-toolbar-title>
         <q-btn flat label="Sign Out" @click="signOut" />
       </q-toolbar>
-      <q-toolbar inset></q-toolbar>
     </q-header>
 
     <q-drawer
