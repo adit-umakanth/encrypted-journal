@@ -18,7 +18,6 @@ coverage
 /cypress/screenshots/
 
 # Firebase directories and files
-.firebaserc
 .firebase
 
 # Editor directories and files

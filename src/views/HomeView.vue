@@ -30,7 +30,6 @@ function signOut() {
         <q-toolbar-title></q-toolbar-title>
         <q-btn flat label="Sign Out" @click="signOut" />
       </q-toolbar>
-      <!-- <q-toolbar inset></q-toolbar> -->
     </q-header>
 
     <q-drawer
@@ -49,7 +48,6 @@ function signOut() {
     </q-drawer>
 
     <q-page-container>
-      app.vue <br />
       <router-view />
     </q-page-container>
   </q-layout>

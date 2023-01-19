@@ -13,7 +13,7 @@ import "quasar/src/css/index.sass";
 import App from "./App.vue";
 import router from "./router";
 
-console.log(initializeApp(firebaseConfig));
+initializeApp(firebaseConfig);
 
 const app = createApp(App);
 
