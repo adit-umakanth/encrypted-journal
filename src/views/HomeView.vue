@@ -30,7 +30,7 @@ function signOut() {
         <q-toolbar-title></q-toolbar-title>
         <q-btn flat label="Sign Out" @click="signOut" />
       </q-toolbar>
-      <!-- <q-toolbar inset></q-toolbar> -->
+      <q-toolbar inset></q-toolbar>
     </q-header>
 
     <q-drawer
