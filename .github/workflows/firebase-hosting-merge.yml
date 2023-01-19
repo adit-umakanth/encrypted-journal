@@ -15,7 +15,7 @@ jobs:
     steps:
       - run: echo $DOES_ENV_WORK
         env:
-          DOES_ENV_WORK: ${{ env.DOES_ENV_WORK }}
+          DOES_ENV_WORK: ${{ vars.DOES_ENV_WORK }}
       # - uses: actions/checkout@v2
       # - run: npm ci && npm run build
       # - uses: FirebaseExtended/action-hosting-deploy@v0
