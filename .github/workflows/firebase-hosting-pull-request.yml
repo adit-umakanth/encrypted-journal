@@ -6,13 +6,11 @@ name: Deploy to Firebase Hosting on PR
 jobs:
   build_and_preview:
     if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
+    name: "Build and Preview"
     runs-on: ubuntu-latest
     environment: development
     steps:
       - uses: actions/checkout@v2
-      - run: echo test $ENV_VAR1
-        env:
-          ENV_VAR1: ${{ vars.TEST_ENV_VAR }}
       - run: npm ci && npm run build
         env:
           VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
