@@ -13,14 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - run: echo $DOES_ENV_WORK
+      - uses: actions/checkout@v2
+      - run: npm ci && npm run build
         env:
-          DOES_ENV_WORK: ${{ vars.DOES_ENV_WORK }}
-      # - uses: actions/checkout@v2
-      # - run: npm ci && npm run build
-      # - uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
-      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ENCRYPTED_JOURNAL_C0268 }}"
-      #     channelId: live
-      #     projectId: encrypted-journal-c0268
+          VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
+          VITE_FB_AUTH_DOMAIN: ${{ secrets.VITE_FB_AUTH_DOMAIN }}
+          VITE_FB_PROJECT_ID: ${{ secrets.VITE_FB_PROJECT_ID }}
+          VITE_FB_STORAGE_BUCKET: ${{ secrets.VITE_FB_STORAGE_BUCKET }}
+          VITE_FB_SENDER_ID: ${{ secrets.VITE_FB_SENDER_ID }}
+          VITE_FB_APP_ID: ${{ secrets.VITE_FB_APP_ID }}
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ENCRYPTED_JOURNAL_C0268 }}"
+          channelId: live
+          projectId: encrypted-journal-c0268
