@@ -13,6 +13,9 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v2
+      - id: trimSHA
+        run: echo "trim_sha=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+        name: Trim Commit SHA
       - run: npm ci && npm run build
         env:
           VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
