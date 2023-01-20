@@ -10,27 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - id: trimSHA
         run: echo "trim_sha=${PR_SHA:0:7}" >> $GITHUB_OUTPUT
         name: Trim Commit SHA
         env:
           PR_SHA: ${{ github.event.pull_request.head.sha }}
-      - run: echo $GITHUB_SHA
-      - run: echo $TRIMMED_SHA
+      - run: npm ci && npm run build
         env:
-          TRIMMED_SHA: ${{ steps.trimSHA.outputs.trim_sha }}
-      # - run: npm ci && npm run build
-      #   env:
-      #     VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
-      #     VITE_FB_AUTH_DOMAIN: ${{ secrets.VITE_FB_AUTH_DOMAIN }}
-      #     VITE_FB_PROJECT_ID: ${{ secrets.VITE_FB_PROJECT_ID }}
-      #     VITE_FB_STORAGE_BUCKET: ${{ secrets.VITE_FB_STORAGE_BUCKET }}
-      #     VITE_FB_SENDER_ID: ${{ secrets.VITE_FB_SENDER_ID }}
-      #     VITE_FB_APP_ID: ${{ secrets.VITE_FB_APP_ID }}
-      #     VITE_GITHUB_SHA: ${{ steps.trimSHA.outputs.trim_sha }}
-      # - uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
-      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ENCRYPTED_JOURNAL_DEV }}"
-      #     projectId: encrypted-journal-dev
+          VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
+          VITE_FB_AUTH_DOMAIN: ${{ secrets.VITE_FB_AUTH_DOMAIN }}
+          VITE_FB_PROJECT_ID: ${{ secrets.VITE_FB_PROJECT_ID }}
+          VITE_FB_STORAGE_BUCKET: ${{ secrets.VITE_FB_STORAGE_BUCKET }}
+          VITE_FB_SENDER_ID: ${{ secrets.VITE_FB_SENDER_ID }}
+          VITE_FB_APP_ID: ${{ secrets.VITE_FB_APP_ID }}
+          VITE_GITHUB_SHA: ${{ steps.trimSHA.outputs.trim_sha }}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ENCRYPTED_JOURNAL_DEV }}"
+          projectId: encrypted-journal-dev
