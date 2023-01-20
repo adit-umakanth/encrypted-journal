@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - run: echo "testing_output" >> $GITHUB_OUTPUT
-        id: trimSHA
+      - run: echo testing_output
+        # id: trimSHA
       - run: echo $VITE_GITHUB_SHA
-        env:
-          VITE_GITHUB_SHA: ${{ steps.trimSHA.outputs }}
+        # env:
+        #   VITE_GITHUB_SHA: ${{ steps.trimSHA.outputs.stdout }}
 
       # - run: npm ci && npm run build
       #   env:
