@@ -21,7 +21,7 @@ jobs:
           VITE_FB_STORAGE_BUCKET: ${{ secrets.VITE_FB_STORAGE_BUCKET }}
           VITE_FB_SENDER_ID: ${{ secrets.VITE_FB_SENDER_ID }}
           VITE_FB_APP_ID: ${{ secrets.VITE_FB_APP_ID }}
-
+          VITE_GITHUB_SHA: ${{ env.GITHUB_SHA }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
