@@ -11,9 +11,8 @@ jobs:
     environment: development
     steps:
       - uses: actions/checkout@v2
+      - run: export VITE_GITHUB_SHA=${GITHUB_SHA:0:6}
       - run: echo $VITE_GITHUB_SHA
-        env:
-          VITE_GITHUB_SHA: ${{ github.sha }}
       # - run: npm ci && npm run build
       #   env:
       #     VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
@@ -22,7 +21,7 @@ jobs:
       #     VITE_FB_STORAGE_BUCKET: ${{ secrets.VITE_FB_STORAGE_BUCKET }}
       #     VITE_FB_SENDER_ID: ${{ secrets.VITE_FB_SENDER_ID }}
       #     VITE_FB_APP_ID: ${{ secrets.VITE_FB_APP_ID }}
-      #     VITE_GITHUB_SHA: ${{ env.GITHUB_SHA }}
+      #     VITE_GITHUB_SHA: ${{ github.sha }}
       # - uses: FirebaseExtended/action-hosting-deploy@v0
       #   with:
       #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
