@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - run: echo "trim_sha=testing_output" >> $GITHUB_OUTPUT
+      - run: echo $GITHUB_SHA
+      - run: echo "trim_sha=${GITHUB_SHA:0:6}" >> $GITHUB_OUTPUT
         id: trimSHA
       - run: echo $VITE_GITHUB_SHA
         env:
