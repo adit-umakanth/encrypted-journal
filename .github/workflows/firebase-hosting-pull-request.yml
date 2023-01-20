@@ -12,8 +12,10 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - id: trimSHA
-        run: echo "trim_sha=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+        run: echo "trim_sha=${PR_SHA:0:7}" >> $GITHUB_OUTPUT
         name: Trim Commit SHA
+        env:
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
       - run: echo $GITHUB_SHA
       - run: echo $TRIMMED_SHA
         env:
