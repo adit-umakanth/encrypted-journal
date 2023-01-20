@@ -10,9 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - uses: actions/checkout@v2
-      - run: export VITE_GITHUB_SHA=${GITHUB_SHA:0:6}
+      - run: echo "testing_output" >> $GITHUB_OUTPUT
+        id: trimSHA
       - run: echo $VITE_GITHUB_SHA
+        env:
+          VITE_GITHUB_SHA: ${{ steps.trimSHA.outputs }}
+
       # - run: npm ci && npm run build
       #   env:
       #     VITE_FB_API_KEY: ${{ secrets.VITE_FB_API_KEY }}
