@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
+      - uses: actions/checkout@v2
       - id: trimSHA
         run: echo "trim_sha=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
         name: Trim Commit SHA
