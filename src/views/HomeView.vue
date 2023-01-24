@@ -6,8 +6,6 @@ import { getAuth } from "@firebase/auth";
 const leftDrawerOpen = ref(false);
 const commitID = import.meta.env.VITE_GITHUB_SHA;
 
-console.log(import.meta.env.VITE_GITHUB_SHA);
-
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
