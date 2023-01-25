@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithRedirect,
-} from "@firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect } from "@firebase/auth";
 import { ref } from "vue";
+import { useFirebaseAuth } from "vuefire";
 
 const redirectLoading = ref(false);
 function redirectForOAuth() {
   redirectLoading.value = true;
-  signInWithRedirect(getAuth(), new GoogleAuthProvider());
+  signInWithRedirect(useFirebaseAuth()!, new GoogleAuthProvider());
 }
 </script>
 
