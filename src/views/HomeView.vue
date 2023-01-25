@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRouter } from "vue-router";
 import { ref } from "vue";
-import { getAuth } from "@firebase/auth";
+import { useCurrentUser, useFirebaseAuth } from "vuefire";
 
 const leftDrawerOpen = ref(false);
 const commitID = import.meta.env.VITE_GITHUB_SHA;
@@ -10,9 +10,13 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
+const user = useCurrentUser();
+
 const router = useRouter();
-function signOut() {
-  getAuth().signOut();
+const signOutLoading = ref(false);
+async function signOut() {
+  signOutLoading.value = true;
+  await useFirebaseAuth()!.signOut();
   router.replace("/login");
 }
 </script>
@@ -30,7 +34,11 @@ function signOut() {
           class="lt-md"
         />
         <q-toolbar-title></q-toolbar-title>
-        <q-btn flat label="Sign Out" @click="signOut" />
+        <q-btn flat label="Sign Out" @click="signOut" :loading="signOutLoading"
+          ><q-tooltip class="text-caption"
+            >Sign out of {{ user?.email }}</q-tooltip
+          ></q-btn
+        >
       </q-toolbar>
     </q-header>
 
