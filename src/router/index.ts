@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
+import MonthView from "@/views/MonthView.vue";
 import { getCurrentUser } from "vuefire";
 
 const router = createRouter({
@@ -10,6 +11,16 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      // TODO: Replace date literal with current month
+      redirect: "journal/2023-03",
+      children: [
+        {
+          path: "journal/:date?",
+          component: MonthView,
+          name: "month-view",
+          props: true,
+        },
+      ],
     },
     {
       path: "/login",
