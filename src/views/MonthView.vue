@@ -6,8 +6,10 @@ import { watch } from "vue";
 import {
   collection,
   query,
-  where,
   type DocumentData,
+  orderBy,
+  startAt,
+  endAt,
 } from "@firebase/firestore";
 import { db } from "@/firebase/fb-init";
 
@@ -23,16 +25,18 @@ watch(props, (new_date) => {
   queryJournalEntries();
 });
 
-const journalMonthRef = collection(
-  db,
-  `/users/${user.value?.uid}/journal-months`
-);
+const journalMonthRef = collection(db, `/users/${user.value?.uid}/entries`);
 
 let entries: _RefFirestore<DocumentData[]>;
 
 function queryJournalEntries() {
-  const q = query(journalMonthRef, where("month", "==", props.date));
-  entries = useCollection(q, { ssrKey: "month" });
+  const q = query(
+    journalMonthRef,
+    orderBy("date"),
+    startAt("2022-01-01"),
+    endAt("2023-04-15")
+  );
+  entries = useCollection(q, { ssrKey: "date" });
 }
 queryJournalEntries();
 </script>
@@ -43,5 +47,8 @@ queryJournalEntries();
   <q-btn @click="router.replace('/journal/2023-03')">Current</q-btn> <br />
   <q-btn @click="router.replace('/journal/2023-04')">Forward</q-btn>
   {{ entries }}
-  <JournalEntryView />
+  <br />
+  <div class="q-ma-lg">
+    <JournalEntryView date="" />
+  </div>
 </template>
