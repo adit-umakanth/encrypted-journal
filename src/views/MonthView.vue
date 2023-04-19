@@ -42,12 +42,6 @@ queryJournalEntries();
 </script>
 
 <template>
-  {{ props }} <br />
-  <q-btn @click="router.replace('/journal/2023-02')">Back</q-btn><br />
-  <q-btn @click="router.replace('/journal/2023-03')">Current</q-btn> <br />
-  <q-btn @click="router.replace('/journal/2023-04')">Forward</q-btn>
-  {{ entries }}
-  <br />
   <div class="q-ma-lg">
     <JournalEntryView date="" />
   </div>

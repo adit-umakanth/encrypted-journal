@@ -3,7 +3,9 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import MonthView from "@/views/MonthView.vue";
 import { getCurrentUser } from "vuefire";
+import dayjs from "dayjs";
 
+const date = dayjs();
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,8 +13,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      // TODO: Replace date literal with current month
-      redirect: "journal/2023-03",
+      redirect: `journal/${date.format("YYYY-MM")}`,
       children: [
         {
           path: "journal/:date?",

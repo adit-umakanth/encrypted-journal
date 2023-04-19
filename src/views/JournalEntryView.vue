@@ -35,10 +35,15 @@ function addNewSection() {
   selected_tab.value = new_section_name.value;
   new_section_name.value = "";
 }
-async function addEntry() {
-  await addDoc(collection(db, `users/${user.value?.uid}/entries`), {
+
+let addEntryLoading = ref(false);
+function addEntry() {
+  addEntryLoading.value = true;
+  addDoc(collection(db, `users/${user.value?.uid}/entries`), {
     date: entry_date.value,
     sections: tab_entries.value,
+  }).then(() => {
+    addEntryLoading.value = false;
   });
 }
 </script>
@@ -118,7 +123,12 @@ async function addEntry() {
       </q-tab-panels>
     </q-card>
     <q-card-actions align="right">
-      <q-btn label="Add Entry" @click="addEntry" color="green-8" />
+      <q-btn
+        label="Add Entry"
+        :loading="addEntryLoading"
+        @click="addEntry"
+        color="green-8"
+      />
     </q-card-actions>
   </q-card>
   <q-dialog v-model="new_dialog_status" persistent>
