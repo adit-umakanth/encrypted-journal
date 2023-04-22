@@ -2,7 +2,7 @@
 import JournalEntryView from "@/views/JournalEntryView.vue";
 import { useCollection, useCurrentUser, type _RefFirestore } from "vuefire";
 import { useRouter } from "vue-router";
-import { watch } from "vue";
+import { ref, watch } from "vue";
 import {
   collection,
   query,
@@ -12,6 +12,7 @@ import {
   endAt,
 } from "@firebase/firestore";
 import { db } from "@/firebase/fb-init";
+import DateSelector from "@/components/DateSelector.vue";
 
 const user = useCurrentUser();
 const router = useRouter();
@@ -21,7 +22,6 @@ const props = defineProps<{
 }>();
 
 watch(props, (new_date) => {
-  console.log(`date has been changed to ${new_date.date}`);
   queryJournalEntries();
 });
 
@@ -33,8 +33,8 @@ function queryJournalEntries() {
   const q = query(
     journalMonthRef,
     orderBy("date"),
-    startAt("2022-01-01"),
-    endAt("2023-04-15")
+    startAt(`${props.date}-01`),
+    endAt(`${props.date}-31`)
   );
   entries = useCollection(q, { ssrKey: "date" });
 }
@@ -43,6 +43,13 @@ queryJournalEntries();
 
 <template>
   <div class="q-ma-lg">
-    <JournalEntryView date="" />
+    <DateSelector
+      @date-change="(new_date) => router.push(`/journal/${new_date}`)"
+      :selected_date="props.date"
+    />
+  </div>
+  <div class="q-ma-lg">
+    {{ entries }}
+    <!-- <JournalEntryView date="" /> -->
   </div>
 </template>
