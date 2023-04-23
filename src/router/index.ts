@@ -4,6 +4,7 @@ import LoginView from "@/views/LoginView.vue";
 import MonthView from "@/views/MonthView.vue";
 import { getCurrentUser } from "vuefire";
 import dayjs from "dayjs";
+import JournalEntryView from "@/views/JournalEntryView.vue";
 
 const date = dayjs();
 const router = createRouter({
@@ -16,10 +17,15 @@ const router = createRouter({
       redirect: `journal/${date.format("YYYY-MM")}`,
       children: [
         {
-          path: "journal/:date?",
+          path: "journal/:date(\\d{4}-\\d{2})",
           component: MonthView,
           name: "month-view",
           props: true,
+        },
+        {
+          path: "journal/:date(\\d{4}-\\d{2}-\\d{2})",
+          name: "entry-view",
+          component: JournalEntryView,
         },
       ],
     },
