@@ -43,24 +43,23 @@ queryJournalEntries();
 const columns = [
   {
     name: "date",
-    required: true,
-    align: "left",
     label: "Date",
+    field: "date",
   },
   {
     name: "section_name",
-    align: "left",
     label: "Sections",
+    field: "sections",
   },
   {
     name: "title",
-    align: "left",
     label: "Title",
+    field: "sections",
   },
   {
     name: "rating",
-    align: "left",
     label: "Rating",
+    field: "sections",
   },
 ];
 </script>
