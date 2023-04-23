@@ -31,30 +31,25 @@ function navigateMonth(delta: number) {
       v-model="model_date"
       type="month"
       style="text-align: center"
-      class="col-3"
+      class="col-12 col-md-3"
     >
       <template v-slot:prepend>
-        <div>
-          <q-btn
-            @click="navigateMonth(-1)"
-            flat
-            round
-            color="primary"
-            icon="chevron_left"
-            class="col-2"
-          />
-        </div>
-      </template>
-      <template v-slot:append>
-        <div>
-          <q-btn
-            @click="navigateMonth(1)"
-            flat
-            round
-            color="primary"
-            icon="chevron_right"
-            class="col-2"
-          />
+        <div class="q-pr-md">
+          <q-btn-group flat>
+            <q-btn
+              @click="navigateMonth(-1)"
+              flat
+              round
+              color="primary"
+              icon="chevron_left"
+            /><q-btn
+              @click="navigateMonth(1)"
+              flat
+              round
+              color="primary"
+              icon="chevron_right"
+            />
+          </q-btn-group>
         </div>
       </template>
     </q-input>
