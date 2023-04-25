@@ -21,7 +21,6 @@ export const useMonthlyEntriesStore = defineStore("monthly-entries", () => {
   function getJournalEntries(month: string) {
     if (month != currently_loaded_month) {
       currently_loaded_month = month;
-      console.log("Updating monthly view from server!");
       monthlyEntries.value = useCollection(
         query(
           journalMonthRef,
