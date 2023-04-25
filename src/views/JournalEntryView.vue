@@ -2,9 +2,11 @@
 import { db } from "@/firebase/fb-init";
 import { addDoc, collection } from "@firebase/firestore";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useCurrentUser } from "vuefire";
 
 let user = useCurrentUser();
+let router = useRouter();
 
 type JournalEntryTab = {
   section_name: string;
@@ -49,6 +51,7 @@ function addEntry() {
 </script>
 <template>
   <q-card>
+    <q-btn icon="arrow_left" @click="router.back()" />
     <q-card-section>
       <q-input
         v-model="entry_date"
